@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include<math.h>
+struct batsman
+{
+    char name[50];
+    int run;
+
+};
+
+int main() {
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+
+    struct batsman person[5];
+    int i,j,run[6],sum;
+    double avg,p,q;
+    double minimum=200.0;
+    int k=0;
+
+    for(i=0; i<5; i++)
+    {
+        printf("Enter name: ");
+        fflush(stdin);
+        gets(person[i].name);
+        sum=0;
+        for(j=0; j<5; j++)
+        {
+            printf("Enter Run of match no %d:\n",j+1);
+            scanf("%d",&run[j]);
+            sum= sum+run[j];
+        }
+        avg= (double)sum/5.0;
+        sum=0;
+        for(j=0; j<5; j++)
+        {
+            sum= sum+ pow((run[j]-(int)avg),2);
+        }
+        p= (double)sum/5.0;
+        p= sqrt(p);
+        printf("Standard Deviation of %s is %lf\n\n",person[i].name,p);
+
+        if(p<minimum)
+        {
+            minimum=p;
+            k=i;
+        }
+
+    }
+    printf("\n The most efficient player is %s whose S.D is = %lf",person[k].name,minimum);
+
+
+    return 0;
+}
+
